@@ -572,3 +572,23 @@ nSrcUserID	消息发送方userID
 type	消息类型
 
 strData	消息内容
+
+
+
+## 收到yuv视频数据回调
+{
+"callbackname" : "onUserYuvPush","width" : 640,"height" : 480,"data" : "QkFTRTY0JXU1MkEwJXU1QkM2JXU4OUUzJXU1QkM2",
+ "len" : 174658,"uid" : 32344
+}  
+收到其他用户发来的消息时触发此回调。
+
+名称	描述  
+data	收到的视频数据 ，是经过base64加密后的字符串。需要经过base64解密后才是 yuv的视频数据  
+
+width	YUV视频帧的宽度  
+
+height	YUV视频帧的高度  
+
+len	YUV视频帧的大小 
+
+uid	用户的id  
