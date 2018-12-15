@@ -1,8 +1,8 @@
-# 编译安装
+# 编译安装 nodejs addons
 <pre><code>
 npm install
 ./node_modules/.bin/electron-rebuild
-<pre><code>
+</pre></code>
 
 # 一，相关接口说明：
 ## 1.Bool initialize(String appid)
