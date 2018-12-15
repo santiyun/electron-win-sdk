@@ -72,7 +72,7 @@ class Sensor : public StreamingWorker {
 			if (pTask != NULL) {
 				switch (pTask->cmd)
 				{
-				case cmd_on_push_h264:
+				case cmd_push_queue:
 					std::string str7 = pTask->json;
 
 					Message tosend("sum", (str7));
@@ -1603,9 +1603,6 @@ void setMicphoneDevice(const Nan::FunctionCallbackInfo<v8::Value>& args) {
 	//std::string value = str;
 	char name[128] = { 0 };
 	sprintf(name, "%s", string_copy.data());
-	OutputDebugString(name);
-	_sleep(30000);
-
 
 	int num = setRecordingDevice(name);
 
@@ -1637,7 +1634,6 @@ void setSpeakerDevice(const Nan::FunctionCallbackInfo<v8::Value>& args) {
 	//std::string value = str;
 	char name[128] = { 0 };
 	sprintf(name, "%s", string_copy.data());
-	OutputDebugString(name);
 	int num = -1;
 	try
 	{
@@ -1647,8 +1643,6 @@ void setSpeakerDevice(const Nan::FunctionCallbackInfo<v8::Value>& args) {
 	{
 		num = -99;
 	}
-	sprintf(name, "func return value %d", num);
-	OutputDebugString(name);
 	args.GetReturnValue().Set(Nan::New(num));
 }
 
@@ -1819,16 +1813,16 @@ void Init(v8::Local<v8::Object> exports) {
 		Nan::New<v8::FunctionTemplate>(SetDefaultDevice)->GetFunction());  //GS_SetDefaultDevice
 
 	////add by liy for myaudiodll
-	exports->Set(Nan::New("SetSpeakerVolume").ToLocalChecked(),
+	exports->Set(Nan::New("setSpeakerVolume").ToLocalChecked(),
 		Nan::New<v8::FunctionTemplate>(Set_SpeakerVolume)->GetFunction());
 
-	exports->Set(Nan::New("SetMicVolume").ToLocalChecked(),
+	exports->Set(Nan::New("setMicVolume").ToLocalChecked(),
 		Nan::New<v8::FunctionTemplate>(Set_MicVolume)->GetFunction());
 
-	exports->Set(Nan::New("GetNumOfRecordingDevices").ToLocalChecked(),
+	exports->Set(Nan::New("getNumOfRecordingDevices").ToLocalChecked(),
 		Nan::New<v8::FunctionTemplate>(GetNumOfMicphones)->GetFunction());
 
-	exports->Set(Nan::New("GetNumOfPlayoutDevices").ToLocalChecked(),
+	exports->Set(Nan::New("getNumOfPlayoutDevices").ToLocalChecked(),
 		Nan::New<v8::FunctionTemplate>(GetNumOfSpeakers)->GetFunction());
 
 	exports->Set(Nan::New("getRecordingDefaultDevice").ToLocalChecked(),
