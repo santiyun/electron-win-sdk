@@ -385,6 +385,28 @@ VIDEO_PROFILE_1080P	116	1920*1080	15	2080*1000
 输入：deviceId，放音设备的id  
 输出：0表示成功，其他表示失败。  
 
+## 64、Int setVideoCompositingLayout(string seiJson)
+设置直播场景里的画中画布局
+
+输入：json格式的字符串，格式如下： 
+{"canvas":{"bgrgb":[35,67,48],"h":737,"w":578},"mid":"123487","pos":[{"h":1,"id":"499862","w":0.5,"x":0,"y":0,"z":0},{"h":1,"id":"123487","w":0.5,"x":0.5,"y":0,"z":1}]}
+
+bgrgb，背景色  
+h，画布高  
+w,画布宽  
+mid，用户userid  
+  
+x,y 用户视频左上角坐标，取值0.0~1.0  
+w,h 用户视频宽高，取值0.0~1.0  
+id 用户userid
+ 
+  
+	{  
+    "errCode": "0",  
+    "deviceID": "设备名称",  
+    "deviceName": "liyong de diannao"  
+    }  
+
 
 # 二，事件通知  
 sdk的不同的事件通知发送给js不同的json串。事件通知对应的json串如下。  
